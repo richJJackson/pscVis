@@ -17,11 +17,11 @@ cfmDataVis <- function(cfm,plot=T){
     x <- dset[,i];x
     nm <- names(dset)[i]
     if(cls[i]%in%c("factor","character")){
-      gglist[[i]] <- fac.vis(x,nm)
+      gglist[[i]] <- facVis(x,nm)
     }
 
     if(cls[i]%in%c("numeric","integer")){
-      gglist[[i]] <- num.vis(x,nm)
+      gglist[[i]] <- numVis(x,nm)
     }
 
   }
