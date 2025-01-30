@@ -1,15 +1,16 @@
 
-
 facVisComp <- function(p,x){
 
-  old.d <- p$data
+  old.d <- p$data;old.d
   tit <- p$labels$title
   old.d$source="CFM"
   dbnew <- data.frame(table(x));dbnew
   dbnew$source <- "DC"
+  names(dbnew) <- names(old.d)
   df <- rbind(old.d,dbnew)
 
-  cls <- brewer.pal(max(3,nrow(df)),"BuGn")
+
+  cls <- brewer.pal(max(3,prod(dim(df))),"BuGn")
 
 
   p <- ggplot(data=df,aes(fill=x,values=Freq))+

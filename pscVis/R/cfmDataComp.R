@@ -1,6 +1,5 @@
 
-cfmDataComp <- function(cfm,data,plot=F){
-
+cfmDataComp   <- function(cfm,data,plot=F){
   ### Setting - Data Summary
   dset <- cfm$data$m
 
@@ -13,7 +12,6 @@ cfmDataComp <- function(cfm,data,plot=F){
   ## Getting initial data vis
   cfmVis <- cfmDataVis(cfm,plot=F)
 
-
   ## Comparisons of DC to m
   gglist.compare <- list()
 
@@ -22,7 +20,7 @@ cfmDataComp <- function(cfm,data,plot=F){
     x <- data[,which(names(data)%in%names(dset)[i])];x
 
     if(cls[i]%in%c("factor","character")){
-      if(!any(unique(dset[,1])%in%unique(x))) warning("factor levels do not match")
+      if(!any(unique(dset[,i])%in%unique(x))) warning("factor levels may not match")
       gglist.compare[[i]] <- facVisComp(cfmVis[[i]],x)
     }
 
@@ -31,6 +29,8 @@ cfmDataComp <- function(cfm,data,plot=F){
       gglist.compare[[i]] <- numVisComp(cfmVis[[i]],x)
     }
   }
+
+  cls
 
   if(!plot) return(gglist.compare)
 
